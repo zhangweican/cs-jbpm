@@ -1,0 +1,114 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.leweiyou</groupId>
+	<artifactId>cs-jbpm</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+
+	<properties>
+		<jbpm.version>4.4</jbpm.version>
+		<spring.version>4.1.4.RELEASE</spring.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<distributionManagement>  
+        <repository>  
+            <id>releases</id>  
+            <name>User Project Release</name>  
+            <url>http://172.28.11.133:9070/nexus/content/repositories/releases</url>  
+        </repository>  
+  
+        <snapshotRepository>  
+            <id>snapshots</id>  
+            <name>User Project SNAPSHOTS</name>  
+            <url>http://172.28.11.133:9070/nexus/content/repositories/snapshots</url>  
+        </snapshotRepository>  
+	</distributionManagement> 
+
+	<dependencies>
+		<!-- JBPM 4 -->
+       <dependency>
+           <groupId>org.jbpm.jbpm4</groupId>
+           <artifactId>jbpm-api</artifactId>
+           <version>${jbpm.version}</version>
+       </dependency>
+       <dependency>
+           <groupId>org.jbpm.jbpm4</groupId>
+           <artifactId>jbpm-jpdl</artifactId>
+           <version>${jbpm.version}</version>
+       </dependency>
+       <dependency>
+           <groupId>org.jbpm.jbpm4</groupId>
+           <artifactId>jbpm-pvm</artifactId>
+           <version>${jbpm.version}</version>
+       </dependency>
+       <dependency>
+           <groupId>org.jbpm.jbpm4</groupId>
+           <artifactId>jbpm-bpmn</artifactId>
+           <version>${jbpm.version}</version>
+       </dependency>
+       <dependency>
+           <groupId>org.jbpm.jbpm4</groupId>
+           <artifactId>jbpm-log</artifactId>
+           <version>${jbpm.version}</version>
+       </dependency>
+       <dependency>
+           <groupId>org.jbpm.jbpm4</groupId>
+           <artifactId>jbpm-db</artifactId>
+           <version>${jbpm.version}</version>
+           <exclusions>
+              <exclusion>
+                  <groupId>hsqldb</groupId>
+                  <artifactId>hsqldb</artifactId>
+              </exclusion>
+              <exclusion>
+                  <groupId>mysql</groupId>
+                  <artifactId>mysql-connector-java</artifactId>
+              </exclusion>
+              <exclusion>
+                  <groupId>postgresql</groupId>
+                  <artifactId>postgresql</artifactId>
+              </exclusion>
+           </exclusions>
+       </dependency>
+		<dependency>
+			<groupId>org.jbpm.jbpm4</groupId>
+			<artifactId>jbpm-test-base</artifactId>
+			<version>${jbpm.version}</version>
+		</dependency>
+ 
+ 		<!-- Hibernate -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>3.6.10.Final</version>
+		</dependency>
+ 
+ 		<!-- java mail -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4</version>
+		</dependency>
+ 
+       <!-- test -->
+       <dependency>
+           <groupId>junit</groupId>
+           <artifactId>junit</artifactId>
+           <version>4.4</version>
+           <scope>test</scope>
+       </dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- 项目的其他引用 -->
+		<dependency>
+			<groupId>com.leweiyou</groupId>
+			<artifactId>cs-service</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>  
+	</dependencies>
+</project>

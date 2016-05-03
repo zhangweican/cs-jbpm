@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process name="Helloword" xmlns="http://jbpm.org/4.4/jpdl" version="1">
+   <start g="338,30,48,48" name="start">
+      <transition g="-49,-18" name="to state" to="填写申请"/>
+   </start>
+   <state g="319,119,92,52" name="填写申请">
+      <transition to="经理审批"/>
+   </state>
+   <state g="322,300,92,52" name="经理审批">
+      <transition g="-68,-18" name="同意" to="exclusive"/>
+      <transition g="243,328;240,148:-49,-18" name="驳回" to="填写申请"/>
+   </state>
+   <state g="535,447,92,52" name="老板审批">
+      <transition g="-42,-18" name="同意" to="end"/>
+      <transition name="驳回" to="填写申请" g="587,146:-66,-18"/>
+   </state>
+   <decision expr="${day > 5 ? '天数大于5天' : '天数小于5天'}" g="343,422,48,48" name="exclusive">
+      <transition g="-49,-18" name="天数大于5天" to="老板审批"/>
+      <transition g="-42,-18" name="天数小于5天" to="end"/>
+   </decision>
+   <end g="347,592,48,48" name="end"/>
+</process>
