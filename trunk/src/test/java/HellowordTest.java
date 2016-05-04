@@ -1,8 +1,4 @@
 
-
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +10,7 @@ import org.jbpm.api.ProcessEngine;
 import org.jbpm.api.ProcessInstance;
 import org.jbpm.api.RepositoryService;
 import org.jbpm.pvm.internal.processengine.SpringHelper;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +35,7 @@ public class HellowordTest {
 		RepositoryService rs = processEngine.getRepositoryService();
 		if(rs.createProcessDefinitionQuery().processDefinitionName("Helloword").count() == 0){
 			String id = rs.createDeployment().addResourceFromClasspath("jpdl/helloword.jpdl.xml").deploy();
-			assertNotNull(id);
+			Assert.assertNotNull(id);
 		}
 	}
 	
@@ -46,9 +43,9 @@ public class HellowordTest {
 	public void testPrintDeploy(){
 		RepositoryService repositoryService = processEngine.getRepositoryService();
 		List<Deployment> list = repositoryService.createDeploymentQuery().list();
-		assertTrue(list.size() != 0);
+		Assert.assertTrue(list.size() != 0);
 		for(Deployment d : list){
-			assertNotNull(d);
+			Assert.assertNotNull(d);
 			System.out.println("Deployment:" + d.getId() + " " + d.getName());
 		}
 	}
@@ -63,7 +60,7 @@ public class HellowordTest {
 		ProcessInstance pi = es.startProcessInstanceByKey("Helloword");
 		Set<String> ans = pi.findActiveActivityNames();
 		String pid = pi.getId();
-		assertTrue(ans != null && ans.contains("填写申请"));
+		Assert.assertTrue(ans != null && ans.contains("填写申请"));
 		
 		//填写请假单
 		Map<String,Object> map = new HashMap<String,Object>();
@@ -71,11 +68,11 @@ public class HellowordTest {
 		map.put("reason", "请假");
 		pi = es.signalExecutionById(pid, map);
 		ans = pi.findActiveActivityNames();
-		assertTrue(ans != null && ans.contains("经理审批"));
+		Assert.assertTrue(ans != null && ans.contains("经理审批"));
 		
 		//经理审批
 		pi = es.signalExecutionById(pid,"同意");
-		assertTrue(pi.isEnded());
+		Assert.assertTrue(pi.isEnded());
 	}
 	
 	/**
@@ -88,7 +85,7 @@ public class HellowordTest {
 		ProcessInstance pi = es.startProcessInstanceByKey("Helloword");
 		Set<String> ans = pi.findActiveActivityNames();
 		String pid = pi.getId();
-		assertTrue(ans != null && ans.contains("填写申请"));
+		Assert.assertTrue(ans != null && ans.contains("填写申请"));
 		
 		//填写请假单
 		Map<String,Object> map = new HashMap<String,Object>();
@@ -96,15 +93,15 @@ public class HellowordTest {
 		map.put("reason", "请假");
 		pi = es.signalExecutionById(pid, map);
 		ans = pi.findActiveActivityNames();
-		assertTrue(ans != null && ans.contains("经理审批"));
+		Assert.assertTrue(ans != null && ans.contains("经理审批"));
 		
 		//经理审批
 		Map<String,Object> map1 = new HashMap<String,Object>();
 		map1.put("reason", "经理不同意：请假次数太多，已经超过了月量");
 		pi = es.signalExecutionById(pid,"驳回",map1);
 		ans = pi.findActiveActivityNames();
-		assertTrue(ans != null && ans.contains("填写申请"));
-		assertTrue(!pi.isEnded());
+		Assert.assertTrue(ans != null && ans.contains("填写申请"));
+		Assert.assertTrue(!pi.isEnded());
 	}
 	
 	
@@ -118,7 +115,7 @@ public class HellowordTest {
 		ProcessInstance pi = es.startProcessInstanceByKey("Helloword");
 		Set<String> ans = pi.findActiveActivityNames();
 		String pid = pi.getId();
-		assertTrue(ans != null && ans.contains("填写申请"));
+		Assert.assertTrue(ans != null && ans.contains("填写申请"));
 		
 		//填写请假单
 		Map<String,Object> map = new HashMap<String,Object>();
@@ -126,20 +123,20 @@ public class HellowordTest {
 		map.put("reason", "请假");
 		pi = es.signalExecutionById(pid, map);
 		ans = pi.findActiveActivityNames();
-		assertTrue(ans != null && ans.contains("经理审批"));
+		Assert.assertTrue(ans != null && ans.contains("经理审批"));
 		
 		//经理审批
 		pi = es.signalExecutionById(pid,"同意");
 		ans = pi.findActiveActivityNames();
-		assertTrue(ans != null && ans.contains("老板审批"));
+		Assert.assertTrue(ans != null && ans.contains("老板审批"));
 		
 		//老板审批
 		Map<String,Object> map1 = new HashMap<String,Object>();
 		map1.put("reason", "老板不同意：项目太紧，过两天请假吧");
 		pi = es.signalExecutionById(pid,"驳回",map1);
 		ans = pi.findActiveActivityNames();
-		assertTrue(ans != null && ans.contains("填写申请"));
-		assertTrue(!pi.isEnded());
+		Assert.assertTrue(ans != null && ans.contains("填写申请"));
+		Assert.assertTrue(!pi.isEnded());
 		
 	}
 	
@@ -153,7 +150,7 @@ public class HellowordTest {
 		ProcessInstance pi = es.startProcessInstanceByKey("Helloword");
 		Set<String> ans = pi.findActiveActivityNames();
 		String pid = pi.getId();
-		assertTrue(ans != null && ans.contains("填写申请"));
+		Assert.assertTrue(ans != null && ans.contains("填写申请"));
 		
 		//填写请假单
 		Map<String,Object> map = new HashMap<String,Object>();
@@ -161,16 +158,16 @@ public class HellowordTest {
 		map.put("reason", "请假");
 		pi = es.signalExecutionById(pid, map);
 		ans = pi.findActiveActivityNames();
-		assertTrue(ans != null && ans.contains("经理审批"));
+		Assert.assertTrue(ans != null && ans.contains("经理审批"));
 		
 		//经理审批
 		pi = es.signalExecutionById(pid,"同意");
 		ans = pi.findActiveActivityNames();
-		assertTrue(ans != null && ans.contains("老板审批"));
+		Assert.assertTrue(ans != null && ans.contains("老板审批"));
 		
 		//老板审批
 		pi = es.signalExecutionById(pid,"同意");
-		assertTrue(pi.isEnded());
+		Assert.assertTrue(pi.isEnded());
 		
 	}
 	
