@@ -6,10 +6,8 @@ import java.util.Set;
 
 import org.jbpm.api.Deployment;
 import org.jbpm.api.ExecutionService;
-import org.jbpm.api.ProcessEngine;
 import org.jbpm.api.ProcessInstance;
 import org.jbpm.api.RepositoryService;
-import org.jbpm.pvm.internal.processengine.SpringHelper;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,31 +15,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.leweiyou.jbpm.JBPM;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:applicationContext-jbpm.xml","classpath:applicationContext-service.xml","classpath:spring-mybatis.xml"})
 public class HellowordTest {
 
 	@Autowired
-	private ProcessEngine processEngine;
-
-	@Autowired
-	private SpringHelper springHelper;
+	private JBPM jbpm;
 	
 	/**
 	 * 发布流程
 	 */
 	@Test
 	public void testDeploy(){
-		RepositoryService rs = processEngine.getRepositoryService();
-		if(rs.createProcessDefinitionQuery().processDefinitionName("Helloword").count() == 0){
-			String id = rs.createDeployment().addResourceFromClasspath("jpdl/helloword.jpdl.xml").deploy();
-			Assert.assertNotNull(id);
-		}
+		//RepositoryService rs = jbpm.getProcessEngine().getRepositoryService();
+		
+		//String dId = rs.createDeployment().addResourceFromClasspath("jpdl/helloword.jpdl.xml").deploy();
+		
+		//Assert.assertNotNull(dId);
 	}
 	
 	@Test
 	public void testPrintDeploy(){
-		RepositoryService repositoryService = processEngine.getRepositoryService();
+		RepositoryService repositoryService = jbpm.getRepositoryService();
 		List<Deployment> list = repositoryService.createDeploymentQuery().list();
 		Assert.assertTrue(list.size() != 0);
 		for(Deployment d : list){
@@ -56,7 +53,7 @@ public class HellowordTest {
 	@Test
 	public void testWrite_1_leader(){
 		//开始
-		ExecutionService es = processEngine.getExecutionService();
+		ExecutionService es = jbpm.getExecutionService();
 		ProcessInstance pi = es.startProcessInstanceByKey("Helloword");
 		Set<String> ans = pi.findActiveActivityNames();
 		String pid = pi.getId();
@@ -81,7 +78,7 @@ public class HellowordTest {
 	@Test
 	public void testWrite_1_$(){
 		//开始
-		ExecutionService es = processEngine.getExecutionService();
+		ExecutionService es = jbpm.getExecutionService();
 		ProcessInstance pi = es.startProcessInstanceByKey("Helloword");
 		Set<String> ans = pi.findActiveActivityNames();
 		String pid = pi.getId();
@@ -111,7 +108,7 @@ public class HellowordTest {
 	@Test
 	public void testWrite_10_$(){
 		//开始
-		ExecutionService es = processEngine.getExecutionService();
+		ExecutionService es = jbpm.getExecutionService();
 		ProcessInstance pi = es.startProcessInstanceByKey("Helloword");
 		Set<String> ans = pi.findActiveActivityNames();
 		String pid = pi.getId();
@@ -146,7 +143,7 @@ public class HellowordTest {
 	@Test
 	public void testWrite_10_leader(){
 		//开始
-		ExecutionService es = processEngine.getExecutionService();
+		ExecutionService es = jbpm.getExecutionService();
 		ProcessInstance pi = es.startProcessInstanceByKey("Helloword");
 		Set<String> ans = pi.findActiveActivityNames();
 		String pid = pi.getId();

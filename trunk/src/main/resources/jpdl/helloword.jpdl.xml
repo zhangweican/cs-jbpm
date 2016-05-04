@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<process name="Helloword" xmlns="http://jbpm.org/4.4/jpdl" version="1">
+<process name="Helloword" xmlns="http://jbpm.org/4.4/jpdl" version="100">
    <start g="338,30,48,48" name="start">
       <transition g="-49,-18" name="to state" to="填写申请"/>
    </start>
