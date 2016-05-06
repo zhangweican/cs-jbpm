@@ -90,6 +90,12 @@
 			<artifactId>mail</artifactId>
 			<version>1.4</version>
 		</dependency>
+ 		<!-- spring orm -->
+ 		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
  
        <!-- test -->
        <dependency>
