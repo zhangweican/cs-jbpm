@@ -181,7 +181,7 @@
 		<!-- 项目的其他引用 -->
 		<dependency>
 			<groupId>com.leweiyou</groupId>
-			<artifactId>cs-service</artifactId>
+			<artifactId>cs-framework</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
 		</dependency>  
 	</dependencies>
