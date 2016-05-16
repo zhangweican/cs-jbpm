@@ -31,26 +31,76 @@
            <groupId>org.jbpm.jbpm4</groupId>
            <artifactId>jbpm-api</artifactId>
            <version>${jbpm.version}</version>
+           <exclusions>
+           		<exclusion>
+           			<groupId>org.slf4j</groupId>
+  					<artifactId>slf4j-api</artifactId>
+           		</exclusion>
+           		<exclusion>
+           			<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-jdk14</artifactId>
+           		</exclusion>
+           </exclusions>
        </dependency>
        <dependency>
            <groupId>org.jbpm.jbpm4</groupId>
            <artifactId>jbpm-jpdl</artifactId>
            <version>${jbpm.version}</version>
+           <exclusions>
+           		<exclusion>
+           			<groupId>org.slf4j</groupId>
+  					<artifactId>slf4j-api</artifactId>
+           		</exclusion>
+           		<exclusion>
+           			<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-jdk14</artifactId>
+           		</exclusion>
+           </exclusions>
        </dependency>
        <dependency>
            <groupId>org.jbpm.jbpm4</groupId>
            <artifactId>jbpm-pvm</artifactId>
            <version>${jbpm.version}</version>
+           <exclusions>
+           		<exclusion>
+           			<groupId>org.slf4j</groupId>
+  					<artifactId>slf4j-api</artifactId>
+           		</exclusion>
+           		<exclusion>
+           			<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-jdk14</artifactId>
+           		</exclusion>
+           </exclusions>
        </dependency>
        <dependency>
            <groupId>org.jbpm.jbpm4</groupId>
            <artifactId>jbpm-bpmn</artifactId>
            <version>${jbpm.version}</version>
+           <exclusions>
+           		<exclusion>
+           			<groupId>org.slf4j</groupId>
+  					<artifactId>slf4j-api</artifactId>
+           		</exclusion>
+           		<exclusion>
+           			<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-jdk14</artifactId>
+           		</exclusion>
+           </exclusions>
        </dependency>
        <dependency>
            <groupId>org.jbpm.jbpm4</groupId>
            <artifactId>jbpm-log</artifactId>
            <version>${jbpm.version}</version>
+           <exclusions>
+           		<exclusion>
+           			<groupId>org.slf4j</groupId>
+  					<artifactId>slf4j-api</artifactId>
+           		</exclusion>
+           		<exclusion>
+           			<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-jdk14</artifactId>
+           		</exclusion>
+           </exclusions>
        </dependency>
        <dependency>
            <groupId>org.jbpm.jbpm4</groupId>
@@ -69,12 +119,30 @@
                   <groupId>postgresql</groupId>
                   <artifactId>postgresql</artifactId>
               </exclusion>
+           		<exclusion>
+           			<groupId>org.slf4j</groupId>
+  					<artifactId>slf4j-api</artifactId>
+           		</exclusion>
+           		<exclusion>
+           			<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-jdk14</artifactId>
+           		</exclusion>
            </exclusions>
        </dependency>
 		<dependency>
 			<groupId>org.jbpm.jbpm4</groupId>
 			<artifactId>jbpm-test-base</artifactId>
 			<version>${jbpm.version}</version>
+			<exclusions>
+           		<exclusion>
+           			<groupId>org.slf4j</groupId>
+  					<artifactId>slf4j-api</artifactId>
+           		</exclusion>
+           		<exclusion>
+           			<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-jdk14</artifactId>
+           		</exclusion>
+           </exclusions>
 		</dependency>
  
  		<!-- Hibernate -->
